@@ -1,0 +1,29 @@
+* {
+  padding: 0px;
+  margin: 0px; }
+  * body {
+    background-color: #abb8cb; }
+    * body h1 {
+      text-align: center; }
+    * body .col {
+      padding: 0px;
+      background-color: #5a98f6;
+      height: 80vh; }
+    * body #col1 #mapid {
+      height: 100%;
+      width: 100%; }
+    * body #col2 #option {
+      list-style: none; }
+      * body #col2 #option li {
+        padding-top: 5px; }
+      * body #col2 #option #edit {
+        width: 100%; }
+      * body #col2 #option #ad button {
+        height: 100%;
+        width: 50%;
+        border-radius: 200px; }
+        * body #col2 #option #ad button.selected {
+          background-color: #6bcbb0;
+          color: snow; }
+
+/*# sourceMappingURL=trace.css.map */
