@@ -18,7 +18,7 @@ let mm = {
         let marker = new L.marker(location,
             {title: name}
         ).addTo(map);
-    
+        
         //Set marker events
         marker.on('drag', function(e){
             arcs.forEach(function(arc){
@@ -29,21 +29,27 @@ let mm = {
                     arc.line.setLatLngs([marker._latlng, arc.line._latlngs[1]]);
                 else
                     if ( index == 1 )
-                        arc.line.setLatLngs([arc.line._latlngs[0], marker._latlng]);
-                   
-            })
+                        arc.line.setLatLngs([arc.line._latlngs[0], marker._latlng]); 
+            });
         });
         marker.on('remove', function(e){
-            console.log(this.options.title+ ' removed');
             for (let i = arcs.length-1; i >= 0; i--) {
                 let arc_name = arcs[i].name.split("/");
                 let index = arc_name.indexOf(marker.options.title);
                 if ( index != -1 ){
+                    marker.unbindPopup()
                     map.removeLayer(arcs[i].line);
                     arcs.splice(i, 1);
                 }
             }       
         });
+
+
+        //Bind popup to the marker 
+        var popup = L.popup()
+        .setLatLng(marker._latlng)
+        .setContent('<p>'+ marker.options.title +'</p>');
+        marker.bindPopup(popup)
 
         //Add ref to the markers list
         markers.push(marker);
@@ -62,6 +68,33 @@ let mm = {
     dell_arc: function(map, arc){
         map.removeLayer(arc.line);
         arcs.splice(arcs.indexOf(arc), 1);
+    },
+    set_all_dragable: function(markers, bool){
+        if (bool)
+            markers.forEach(function (marker) { marker.dragging.enable()});
+        else
+            markers.forEach(function (marker) {marker.dragging.disable()});
+    },
+    set_dragable: function(marker, bool){
+        
+        if (bool &&  !marker.dragging.enabled())
+            marker.dragging.enable()
+        else
+            if (!bool &&  marker.dragging.enabled())
+                marker.dragging.disable()
+    },
+    over_watch: function(map, markers){
+        if (markers && markers.length>0){
+            bounds = [];
+            markers.forEach(function(marker) {
+                bounds.push(marker._latlng)
+            });
+            map.flyToBounds(bounds, {})
+        }
+    },
+    fly_to: function(map, marker, zoomLvl){
+        if (marker)
+            map.flyTo(marker._latlng, zoomLvl)
     }
 }//Map manager
 
@@ -75,25 +108,26 @@ markers= []
 arcs= []
 
 //routers
-router_api = [
+/* router_api = [
     [[51.5, -0.09], "R0"],
     [[51.5, -0.10], "R1"],
     [[51.505, -0.095], "R2"]
 ]
 router_api.forEach(function(router){
     mm.add_marker(map, markers, arcs, router[0], router[1]);
-})
+}) */
 
 // arcs
-arcs_api = [
+/* arcs_api = [
     [markers[0], markers[1]],
     [markers[1], markers[2]],
     [markers[2], markers[0]]
 ];
 arcs_api.forEach(function(arc){
     mm.add_arc(map, arcs, arc[0], arc[1]);
-})
+}) */
 //Map init
+
 
 
 

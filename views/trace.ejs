@@ -17,17 +17,22 @@
 </head>
     
     <body>
-        <h1>Routs and Corners</h1>
+       
         <div class="container">
             <div class="row">
     
                 <div id="col2" class="col col-xs-2">
                     <ul id="option"  >
                         <li><button id="edit" class="btn btn-warning edit">UnEditabble</button></li>
-                        <li id="ad"><button id="ad_R">R</button><button id="ad_D">D</button></li>
-                        
                     </ul>
-                    
+
+                    <form id="search_bar" class="search-form">
+                        <div class="form-group has-feedback">
+                            <label for="search" class="sr-only"></label>
+                            <input type="text" class="form-control" id="search_val" placeholder="search" autocomplete="off">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </form>
                 </div>
 
                 <div id="col1" class="col col-xs-10">
@@ -41,77 +46,7 @@
     </body>
 
 
-    <!-- <script>
-
-        // Devices
-        devices = {
-            "A":"192.168.2.1",
-            "C":"192.163.2.1"
-        }
-        
-        // Routers
-        let routers = [
-            {
-                "ip":"192.168.0.0",
-                "routes": [
-                    "192.168.1.0/192.167.1.0",
-                    "192.168.2.0/192.168.2.1",
-                    "192.168.3.0/192.166.1.0",
-                    "192.168.4.0/192.165.1.0"
-                ]
-            },
-            {
-                "ip":"192.164.0.0",
-                "routes": [
-                    "192.164.1.0/192.167.2.0",
-                    "192.164.2.0/192.163.3.0",
-                    "192.164.3.0/192.166.2.0"
-                ]
-            },
-            {
-                "ip":"192.163.0.0",
-                "routes": [
-                    "192.163.1.0/192.165.2.0", 
-                    "192.163.2.0/192.163.2.1", 
-                    "192.163.3.0/192.164.2.0"
-                ]
-            },
-            {
-                "ip":"192.167.0.0",
-                "routes": [
-                    "192.167.1.0/192.168.1.0", 
-                    "192.167.2.0/192.164.1.0"
-                ]
-            },
-            {
-                "ip":"192.165.0.0",
-                "routes": [
-                    "192.165.1.0/192.168.4.0", 
-                    "192.165.2.0/192.163.1.0"
-                ]
-            },
-            {
-                "ip":"192.166.0.0",
-                "routes": [
-                    "192.166.1.0/192.168.3.0", 
-                    "192.166.2.0/192.164.3.0"
-                ]
-            }
-        ]
-        
-        // path tabble
-        let arcs = [];
-        let nb_R = routers.length;
-        /* routers.forEach(function(r){
-            index = routers.indexOf(r)
-            console.log("R", index, ": ", r);
-            
-            arcs.push([])
-            
-        }); */
-
-        
-    </script>-->
+   
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/leaflet/dist/leaflet.js"></script>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
